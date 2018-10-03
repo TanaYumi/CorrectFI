@@ -2,6 +2,7 @@
 This script corrects the Fluorescent Intensity (FI) of sequential time-lapse images.
 
 imput  : FI_Data.csv, M_Roi_of_analyzewell.csv, M_Roi_of_emptywell.csv
+
 output : corrected_FI_Data.csv
 
 Methods
@@ -109,7 +110,11 @@ Example
 import CorrectFI as cf
 
 wd = '~/data/'
+
 FI_Data, empwell_Data = cf.read_file(wd, 'ROI_Data.csv', 'PositiveWellIndexes_empty.csv')
+
 cr_coef_Data = cf.calc_cr_coef(FI_Data,empwell_Data)
+
 cr_FI_Data = cf.calc_cr_FI(cr_coef_Data,FI_Data,medfilt=3)
+
 cf.plot(cr_FI_Data)
