@@ -4,7 +4,7 @@ This script corrects the Fluorescent Intensity (FI) of sequential time-lapse ima
 imput  : FI_Data.csv, M_Roi_of_analyzewell.csv, M_Roi_of_emptywell.csv
 output : corrected_FI_Data.csv
 
-methods
+Methods
 ----------
 * read_file
 * calc_cr_coef
@@ -23,7 +23,6 @@ cr_FI_Data = cf.calc_cr_FI(cr_coef_Data,FI_Data,medfilt=3)
 cf.plot(cr_FI_Data)
 
 *read_file
-    """
     Read the FI_file and empty_well_file
     
     parameters
@@ -41,10 +40,9 @@ cf.plot(cr_FI_Data)
     ----------
     pd.DataFrame(FI_Data), pd.DataFrame(empwell_Data)
     
-    """
+    
     
 *calc_cr_coef
-    """
     Calculate the correction coefficient using the FI of empty wells
     
     
@@ -68,11 +66,9 @@ cf.plot(cr_FI_Data)
     ----------
     pd.DataFrame (correction_coefficients of each chamber and each roi)
     
-    """
+    
 
 *calc_cr_FI
-    
-    """
     calculate the corrected FI using the correction_coefficient
     
     parameter
@@ -101,10 +97,9 @@ cf.plot(cr_FI_Data)
     ----------
     pd.DataFrame (corrected FI_Data)
     
-    """
+
     
 *plot
-    """
     plot FI_Data
     
     parameter
