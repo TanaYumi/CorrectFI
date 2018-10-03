@@ -12,18 +12,7 @@ Methods
 
 Please excecute these methods sequentialy .
 
-Example
-----------
-import CorrectFI as cf
-
-wd = '~/data/'
-FI_Data, empwell_Data = cf.read_file(wd, 'ROI_Data.csv', 'PositiveWellIndexes_empty.csv')
-cr_coef_Data = cf.calc_cr_coef(FI_Data,empwell_Data)
-cr_FI_Data = cf.calc_cr_FI(cr_coef_Data,FI_Data,medfilt=3)
-cf.plot(cr_FI_Data)
-
-*read_file
-    Read the FI_file and empty_well_file
+*read_file | Read the FI_file and empty_well_file
     
     parameters
     ----------
@@ -42,8 +31,7 @@ cf.plot(cr_FI_Data)
     
     
     
-*calc_cr_coef
-    Calculate the correction coefficient using the FI of empty wells
+*calc_cr_coef | Calculate the correction coefficient using the FI of empty wells
     
     
     parameters
@@ -68,8 +56,7 @@ cf.plot(cr_FI_Data)
     
     
 
-*calc_cr_FI
-    calculate the corrected FI using the correction_coefficient
+*calc_cr_FI | calculate the corrected FI using the correction_coefficient
     
     parameter
     ----------
@@ -99,8 +86,7 @@ cf.plot(cr_FI_Data)
     
 
     
-*plot
-    plot FI_Data
+*plot | plot FI_Data
     
     parameter
     ----------
@@ -117,3 +103,13 @@ cf.plot(cr_FI_Data)
     Returns
     ----
 
+
+Example
+----------
+import CorrectFI as cf
+
+wd = '~/data/'
+FI_Data, empwell_Data = cf.read_file(wd, 'ROI_Data.csv', 'PositiveWellIndexes_empty.csv')
+cr_coef_Data = cf.calc_cr_coef(FI_Data,empwell_Data)
+cr_FI_Data = cf.calc_cr_FI(cr_coef_Data,FI_Data,medfilt=3)
+cf.plot(cr_FI_Data)
