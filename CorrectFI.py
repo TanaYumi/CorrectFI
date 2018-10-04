@@ -143,12 +143,12 @@ def calc_cr_coef(FI_Data, empwell_Data, chm_end=False, roi_list=[1,2,3,4], chann
 
 
 
-def calc_cr_FI(cr_coef_Data, FI_Data, medfilt=False, chm_end=False, roi_list=[1,2,3,4], channel='MeanIL13'):
+def calc_cr_FI(cr_coef_Data, FI_Data, medfilt=False, subtmean=True, chm_end=False, roi_list=[1,2,3,4], channel='MeanIL13'):
     
     """
     calculate the corrected FI using the correction_coefficient
     
-    parameter
+    Parameter
     ----------
     
     cr_coef_Data: pd.DataFrame
@@ -160,6 +160,9 @@ def calc_cr_FI(cr_coef_Data, FI_Data, medfilt=False, chm_end=False, roi_list=[1,
     medfilt     : default is False, 
                   If you apply, imput kernel_size of median filter
                  
+    subtmean    : True or False, default True
+                  If True, corrected FI was subtracted by trimmean of each multipoint
+                     
     chm_end     : False or nested list, default False
                   If you calculate the back noise of each chamber separately,
                   imput first and last Multipoint in each chamber, like [[s1,l1],[s2,l2]]
@@ -211,6 +214,13 @@ def calc_cr_FI(cr_coef_Data, FI_Data, medfilt=False, chm_end=False, roi_list=[1,
     #subtract FI of first time point
     crFI_Data = piv_crFI_Data.apply(lambda x: x-piv_crFI_Data[1])
     
+    #apply subtmean
+    if subtmean == False:
+        pass
+    else:
+        sum_crFI_Data = crFI_Data.groupby('ND.M').sum()-crFI_Data.groupby('ND.M').max()
+        crFI_Data = crFI_Data.groupby('ND.M').apply(lambda x:x-sum_crFI_Data.div(len(roi_list)-1))
+
     #apply median filter
     if medfilt == False:
         pass
