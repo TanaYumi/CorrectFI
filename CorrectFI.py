@@ -215,7 +215,7 @@ def calc_cr_FI(cr_coef_Data, FI_Data, medfilt=False, chm_end=False, roi_list=[1,
     if medfilt == False:
         pass
     else:
-        crFI_Data = crFI_Data.apply(lambda x: ss.medfilt(x,kernel_size=3), axis=1)
+        crFI_Data = crFI_Data.apply(lambda x: ss.medfilt(x,kernel_size=medfilt), axis=1)
         
     return crFI_Data
 
